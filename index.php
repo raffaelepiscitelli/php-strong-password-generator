@@ -11,9 +11,10 @@
 
 <body>
 
-<?php
+    <?php
 
-    function generateRandomPassword($length = 20) {
+    function generateRandomPassword($length)
+    {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!£$%&*#';
         $charactersLength = strlen($characters);
         $randomString = '';
@@ -22,7 +23,7 @@
         }
         return $randomString;
     }
-?>
+    ?>
 
     <header>
 
@@ -40,7 +41,7 @@
 
         <div class="main-container d-flex flex-column justify-content-center align-items-center">
 
-            <form action="/index.php">
+            <form action="./index.php" method="GET">
 
                 <label for="password-generator"></label>
 
@@ -48,6 +49,15 @@
 
             </form>
 
+
+            <p class="text-white mt-3"> Your new genereted password is: <?php
+                                                        if (isset($_GET['password-lenght'])) {
+                                                            $length = $_GET['password-lenght'];
+                                                            $newPassword = generateRandomPassword($length);
+                                                            echo $newPassword;
+                                                        };
+                                                        ?>
+            </p>
 
         </div>
 
